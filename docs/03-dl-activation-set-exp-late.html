@@ -4,20 +4,26 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
         <script src="shared.js"></script>
         <script>
+            dataLayer = [];
+
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-            })(window,document,'script','https://www.google-analytics.com/analytics_debug.js','ga');
+            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
             ga('create', 'UA-55490258-5', 'auto');
             ga('require', 'GTM-5SJT8BC');
-
-            var variant = chooseVariantWeighted();
-            console.log('SELECTED VARIANT ' + variant);
-            ga('set', 'exp', 't7vmsnp-Sf-YGsBKn7WO7Q.' + variant);
-
-            ga('set', 'dimension1', '01-browser-variant-early');
+        
+            ga('set', 'dimension1', '03-dl-activation-set-exp-late');
             ga('send', 'pageview');
+
+            setTimeout(function() {
+                var variant = chooseVariantWeighted();
+                console.log('SELECTED VARIANT ' + variant);
+                ga('set', 'exp', 'KKJeWNwyS5ywKH0b84svnw.' + variant);
+                ga('send', 'event', 'optimize', 'init');
+                dataLayer.push(['event', 'optimize.activate003']);
+            }, 500);           
         </script>
     </head>
     <body>
